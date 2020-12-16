@@ -1,0 +1,19 @@
+---
+title: Contact
+permalink: /contact/
+description: Contact form
+layout: page
+no-sidebar: true
+tags:
+- contact
+scripts:
+- src: "https://cdn.kernvalley.us/components/share-target.js"
+  crossorigin: anonymous
+  referrerpolicy: no-referrer
+  async: true # No harm in making it async since GET does not require service worker / `postMessage()`
+---
+<toast-message backdrop="" open="">
+	<div slot="content">
+		{% include contact-form.html phone=true subject=true legend="Demo Contact Form" method="POST" action="https://api.kernvalley.us/test/" enctype="multipart/form-data" %}
+	</div>
+</toast-message>
