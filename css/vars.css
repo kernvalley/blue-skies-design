@@ -3,4 +3,6 @@
 
 :root {
 	--map-width: 100%;
+	--accent-color-dark: #70b9d5;
+	--accent-color-light: var(--accent-color-dark);
 }

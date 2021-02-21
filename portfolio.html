@@ -1,0 +1,17 @@
+---
+layout: default
+title: Portfolio
+pinned: true
+description: A GitHub repository for easily creating fast, modern, PWA compatible websites
+tags:
+  - jekyll
+  - pwa
+  - github template repo
+---
+<section id="portfolio-ads" class="grid">
+	{% for img in site.data.portfolio %}
+	  <div class="card portfolio-entry center">
+		<img src="{{ img.url }}" loading="lazy" decoding="async" alt="" referrerpolicy="no-referrer" />
+	  </div>
+	{% endfor %}
+</section>

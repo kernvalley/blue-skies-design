@@ -1,3 +1,4 @@
 #header {
-	background-image: url("/img/neon.svg");
+	background-image: linear-gradient(#70b9d5, #c5dedb);
+	grid-area: header;
 }

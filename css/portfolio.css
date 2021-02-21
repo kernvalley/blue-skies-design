@@ -1,0 +1,7 @@
+.portfolio-entry img {
+	height: 280px;
+	width: auto;
+	max-width: 400px;
+	object-fit: cover;
+	object-position: center;
+}
