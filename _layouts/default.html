@@ -2,12 +2,12 @@
 name: default
 theme: default
 og-type: website
-itemtype: 'https://schema.org/AboutPage'
+itemtype: 'https://schema.org/WebPage'
 layout: base
 sidebar: false
-main-itemtype: Event
+theme: light
 ---
-{% unless page.no-nav == true %}{% include common/nav.html %}{% endunless %}
+{% unless page.no-nav == true %}{% include common/nav.html appList=false %}{% endunless %}
 {% unless page.no-header == true %}{% include header.html %}{% endunless %}
 <main id="main">{{ content }}</main>
 {% comment %}

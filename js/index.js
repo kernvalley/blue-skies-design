@@ -41,16 +41,18 @@ $(document.documentElement).toggleClass({
 
 if (typeof GA === 'string' && GA.length !== 0) {
 	requestIdleCallback(() => {
-		importGa(GA).then(async ({ ga }) => {
-			ga('create', GA, 'auto');
-			ga('set', 'transport', 'beacon');
-			ga('send', 'pageview');
+		importGa(GA).then(async ({ ga, hasGa }) => {
+			if (hasGa()) {
+				ga('create', GA, 'auto');
+				ga('set', 'transport', 'beacon');
+				ga('send', 'pageview');
 
-			await ready();
+				await ready();
 
-			$('a[rel~="external"]').click(externalHandler, { passive: true, capture: true });
-			$('a[href^="tel:"]').click(telHandler, { passive: true, capture: true });
-			$('a[href^="mailto:"]').click(mailtoHandler, { passive: true, capture: true });
+				$('a[rel~="external"]').click(externalHandler, { passive: true, capture: true });
+				$('a[href^="tel:"]').click(telHandler, { passive: true, capture: true });
+				$('a[href^="mailto:"]').click(mailtoHandler, { passive: true, capture: true });
+			}
 		});
 	});
 }
@@ -60,7 +62,51 @@ Promise.allSettled([
 ]).then(() => {
 	init().catch(console.error);
 
+	$('#sun').animate([{
+		transform: 'none',
+	}, {
+		transform: 'translate(100%, 100%)'
+	}], {
+		duration: 8000,
+		easing: 'ease-in-out',
+		fill: 'both',
+	});
+
 	if (location.pathname.startsWith('/contact')) {
 		$('#contact-form').submit(submitHandler);
+	} else if (location.pathname.startsWith('/portfolio')) {
+		$('.portfolio-entry').click(async function() {
+			const img = this.querySelector('img');
+
+			if (img instanceof Element) {
+				const dialog = document.createElement('dialog');
+				const container = document.createElement('div');
+				const cpy = img.cloneNode(true);
+
+				container.classList.add('card', 'shadow', 'center');
+				cpy.height = img.naturalHeight;
+				cpy.width = img.naturalWidth;
+				container.append(cpy);
+				dialog.append(container);
+				document.body.append(dialog);
+				dialog.addEventListener('close', ({ target }) => target.remove());
+				dialog.addEventListener('click', function() {
+					this.close();
+				}, { once: true });
+
+				if (dialog.animate instanceof Function) {
+					dialog.animate([{
+						opacity: 0.1,
+					}, {
+						opacity: 1,
+					}], {
+						duration: 400,
+						easing: 'ease-in-out',
+					});
+				}
+
+				dialog.showModal();
+			}
+		});
 	}
 });

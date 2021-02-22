@@ -3,9 +3,12 @@
 @import url("./sidebar.css");
 @import url("./main.css");
 @import url("./footer.css");
+@import url("./portfolio.css");
 
 body.grid {
 	grid-template-areas: "nav nav nav" "header header header" ". main ." "footer footer footer";
+	grid-template-columns: 15px 1fr 15px;
+	grid-template-rows: var(--nav-height, 4rem) var(--header-height, 45vh) minmax(800px, 1fr) auto;
 }
 
 .content {
@@ -46,7 +49,7 @@ dialog {
 	width: 3vmax;
 }
 
-button[is="share-button"] {
+button.btn[is="share-button"] {
 	bottom: 1rem;
 	right: 1rem;
 	border-radius: 50%;

@@ -1,0 +1,10 @@
+nav:
+  - label: About
+    icon: home
+    href: /
+  - label: Portfolio
+    icon: applications-graphics
+    href: /portfolio
+  - label: Contact
+    icon: address-book
+    href: /contact
