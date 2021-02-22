@@ -5,10 +5,14 @@
 	gap: 8px;
 }
 
+#portfolio-ads .card.portfolio-entry {
+	background-color: #B6E6F1;
+}
+
 .portfolio-entry img {
 	height: 280px;
 	width: auto;
-	max-width: 400px;
+	max-width: 100%;
 	object-fit: cover;
 	object-position: center;
 }

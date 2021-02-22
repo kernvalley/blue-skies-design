@@ -12,7 +12,9 @@ import 'https://cdn.kernvalley.us/components/leaflet/marker.js';
 import 'https://cdn.kernvalley.us/components/pwa/install.js';
 import 'https://cdn.kernvalley.us/components/ad/block.js';
 import 'https://cdn.kernvalley.us/components/app/list-button.js';
-import { $, ready } from 'https://cdn.kernvalley.us/js/std-js/functions.js';
+// import { $, ready } from 'https://cdn.kernvalley.us/js/std-js/functions.js';
+import { ready, css } from 'https://cdn.kernvalley.us/js/std-js/dom.js';
+import { $ } from 'https://cdn.kernvalley.us/js/std-js/esQuery.js';
 import { init } from 'https://cdn.kernvalley.us/js/std-js/data-handlers.js';
 import { importGa, externalHandler, telHandler, mailtoHandler } from 'https://cdn.kernvalley.us/js/std-js/google-analytics.js';
 import { submitHandler } from './contact-demo.js';
@@ -100,6 +102,12 @@ Promise.allSettled([
 				cpy.width = img.naturalWidth;
 				container.append(cpy);
 				dialog.append(container);
+
+				css(dialog, {
+					'background-color': 'transparent',
+					'border': 'none',
+				});
+
 				document.body.append(dialog);
 				dialog.addEventListener('close', ({ target }) => target.remove());
 				dialog.addEventListener('click', function() {
