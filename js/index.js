@@ -65,24 +65,25 @@ Promise.allSettled([
 	init().catch(console.error);
 
 	$('#sun').animate([{
-		transform: 'translate(45vw, 44vh)',
+		transform: 'translate(-5vw, 20vh)',
 		fill: '#f97718',
 	}, {
-		transform: 'translate(60vw, 5vh)',
+		transform: 'none',
 		fill: '#f3c80c',
 	}], {
 		duration: 8000,
-		easing: 'ease-in-out',
+		easing: 'ease-in',
 		fill: 'both',
 	});
 
 	$('#bird').animate([{
-		transform: 'translate(20vw, 10vh)'
+		transform: 'translate(55vw, 2vh)'
 	}, {
 		transform: 'none',
 	}], {
-		duration: 10000,
-		easing: 'linear',
+		delay: 2000,
+		duration: 6000,
+		easing: 'ease-out',
 		fill: 'both',
 	});
 

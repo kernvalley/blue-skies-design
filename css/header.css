@@ -4,10 +4,34 @@
 	height: var(--header-height, 45vh);
 	background-position: scroll;
 	position: relative;
+	overflow-y: visible;
+	overflow-x: hidden;
+}
+
+#bird, #sun, #page-title {
+	position: absolute;
+	transform-origin: center;
 }
 
 #bird {
-	position: absolute;
-	top: 4vh;
-	right: 20vw;
+	right: 40vw;
+	top: 5vh;
 }
+
+#sun {
+	right: 40vw;
+	top: 5vh;
+}
+
+#page-title {
+	left: 0;
+	right: 0;
+	top: 20vh;
+	width: 100%;
+}
+
+/* #bird { */
+/* 	position: absolute; */
+/* 	top: 4vh; */
+/* 	right: 20vw; */
+/* } */
