@@ -5,6 +5,9 @@ nav:
   - label: Portfolio
     icon: applications-graphics
     href: /portfolio
+  - label: Photography
+    icon: camera-photo
+    href: /photography
   - label: Contact
     icon: address-book
     href: /contact

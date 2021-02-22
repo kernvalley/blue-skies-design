@@ -3,7 +3,7 @@
 	gap: 18px;
 	grid-area: nav;
 	background-color: var(--primary-color);
-	color: var(--default-color);
+	color: var(--scrollbar-color);
 	padding-left: 20px;
 }
 

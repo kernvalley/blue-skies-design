@@ -2,10 +2,14 @@
 	--link-color: #049ccf;
 	--link-decoration: underline;
 	grid-area: main;
-	padding-top: 25px;
+	padding: 25px 0;
 	z-index: 1;
 }
 
-article p:first-letter {
+p:first-letter {
 	margin-left: 2em;
+}
+
+#contact-form legend, #contact-form .input-label {
+	color: var(--scrollbar-color);
 }

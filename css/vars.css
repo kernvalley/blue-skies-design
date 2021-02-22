@@ -6,4 +6,9 @@
 	--header-height: 45vh;
 	--accent-color-dark: #70b9d5;
 	--accent-color-light: var(--accent-color-dark);
+	--scrollbar-color-light: #0D6276;
+	--scrollbar-color-dark: var(--scrollbar-color-light);
+	--scrollbar-color: var(--scrollbar-color-light);
+	--scrollbar-track-light: #C8E5F0;
+	--scrollbar-track-dark: var(--scrollbar-track-light);
 }
