@@ -10,16 +10,13 @@ const config = {
 	fresh: [
 		/* Root document */
 		'{{ site.pages | where: "pinned", true | map: "url" | join: "', '" }}',
-		'{{ site.posts | where: "pinned", true | map: "url" | join: "', '" }}',
+		//'{{ site.posts | where: "pinned", true | map: "url" | join: "', '" }}',
 	].map(path => new URL(path, location.origin).href),
 	stale: [
 		/* Other HTML */
-		'/css/index.min.css',
-		'/js/index.min.js',
-		'/img/icons.svg',
 
 		/* JS */
-		'https://cdn.polyfill.io/v3/polyfill.min.js',
+		'/js/index.min.js',
 		'https://cdn.kernvalley.us/components/share-target.js',
 
 		/* `customElements`templates */
@@ -31,6 +28,7 @@ const config = {
 		'https://cdn.kernvalley.us/components/pwa/prompt.html',
 
 		/* CSS */
+		'/css/index.min.css',
 		'https://cdn.kernvalley.us/components/toast-message.css',
 		'https://cdn.kernvalley.us/components/leaflet/map.css',
 		'https://cdn.kernvalley.us/components/share-to-button/share-to-button.css',

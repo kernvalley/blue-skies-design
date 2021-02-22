@@ -1,6 +1,9 @@
-main {
+#main {
 	--link-color: #049ccf;
 	--link-decoration: underline;
+	grid-area: main;
+	padding-top: 25px;
+	z-index: 1;
 }
 
 article p:first-letter {
