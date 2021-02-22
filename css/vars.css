@@ -2,7 +2,8 @@
 @import url("https://cdn.kernvalley.us/css/core-css/theme/properties.css");
 
 :root {
-	--map-width: 100%;
+	--nav-height: 4rem;
+	--header-height: 45vh;
 	--accent-color-dark: #70b9d5;
 	--accent-color-light: var(--accent-color-dark);
 }

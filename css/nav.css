@@ -4,6 +4,7 @@
 	grid-area: nav;
 	background-color: var(--primary-color);
 	color: var(--default-color);
+	padding-left: 20px;
 }
 
 #nav > .nav-btn {

@@ -63,12 +63,24 @@ Promise.allSettled([
 	init().catch(console.error);
 
 	$('#sun').animate([{
-		transform: 'none',
+		transform: 'translate(45vw, 44vh)',
+		fill: '#f97718',
 	}, {
-		transform: 'translate(100%, 100%)'
+		transform: 'translate(60vw, 5vh)',
+		fill: '#f3c80c',
 	}], {
 		duration: 8000,
 		easing: 'ease-in-out',
+		fill: 'both',
+	});
+
+	$('#bird').animate([{
+		transform: 'translate(20vw, 10vh)'
+	}, {
+		transform: 'none',
+	}], {
+		duration: 10000,
+		easing: 'linear',
 		fill: 'both',
 	});
 

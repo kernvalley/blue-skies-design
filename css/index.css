@@ -26,6 +26,14 @@ body {
 	}
 }
 
+.capitalize {
+	text-transform: capitalize;
+}
+
+.uppercase {
+	text-transform: uppercase;
+}
+
 img.avatar {
 	vertical-align: middle;
 	margin-left: 1.2em;
