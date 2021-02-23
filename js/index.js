@@ -2,11 +2,11 @@ import 'https://cdn.kernvalley.us/js/std-js/deprefixer.js';
 import 'https://cdn.kernvalley.us/js/std-js/shims.js';
 import 'https://cdn.kernvalley.us/js/std-js/theme-cookie.js';
 import 'https://cdn.kernvalley.us/components/share-button.js';
-import 'https://cdn.kernvalley.us/components/slide-show/slide-show.js';
 import 'https://cdn.kernvalley.us/components/github/user.js';
 import 'https://cdn.kernvalley.us/components/current-year.js';
 import 'https://cdn.kernvalley.us/components/bacon-ipsum.js';
-import { ready, css } from 'https://cdn.kernvalley.us/js/std-js/dom.js';
+import { useSVG } from 'https://cdn.kernvalley.us/js/std-js/svg.js';
+import { ready, css, on } from 'https://cdn.kernvalley.us/js/std-js/dom.js';
 import { $ } from 'https://cdn.kernvalley.us/js/std-js/esQuery.js';
 import { init } from 'https://cdn.kernvalley.us/js/std-js/data-handlers.js';
 import { importGa, externalHandler, telHandler, mailtoHandler } from 'https://cdn.kernvalley.us/js/std-js/google-analytics.js';
@@ -101,25 +101,58 @@ Promise.allSettled([
 			const img = this.querySelector('img');
 
 			if (img instanceof Element) {
+				const hash = location.hash;
 				const dialog = document.createElement('dialog');
 				const container = document.createElement('div');
 				const cpy = img.cloneNode(true);
+				const close = document.createElement('button');
+				const icon = useSVG('x', { fill: '#343434', height: 20, width: 20 });
+				const callback = function callback(event) {
+					if (hash === '#' || hash === '') {
+						history.replaceState(history.state, document.title, location.pathname);
+					} else {
+						location.hash = hash;
+					}
 
-				container.classList.add('card', 'shadow', 'center');
+					if (this instanceof Element && this.tagName === 'DIALOG') {
+						this.close();
+					} else if (this instanceof HTMLButtonElement) {
+						this.closest('dialog').close();
+					} else {
+						document.querySelector('dialog[open]').close();
+						event.returnValue = '';
+					}
+				};
+
+				dialog.classList.add('clearfix');
+				container.classList.add('card', 'shadow', 'center', 'clearfix');
+				close.classList.add('float-right');
 				cpy.height = img.naturalHeight;
 				cpy.width = img.naturalWidth;
 				container.append(cpy);
-				dialog.append(container);
+				close.append(icon);
+				dialog.append(close, container);
 
 				css(dialog, {
 					'background-color': 'transparent',
 					'border': 'none',
 				});
 
+				css(close, {
+					'background-color': 'transparent',
+					'border': 'none',
+					'margin': '8px',
+				});
+
 				document.body.append(dialog);
-				dialog.addEventListener('close', ({ target }) => target.remove());
-				dialog.addEventListener('click', function() {
-					this.close();
+
+
+				on(close, { click: callback }, { once: true });
+				on(dialog, {
+					close: ({ target }) => {
+						target.remove();
+						window.removeEventListener('hashchange', callback, { once: true });
+					}
 				}, { once: true });
 
 				if (dialog.animate instanceof Function) {
@@ -134,6 +167,10 @@ Promise.allSettled([
 				}
 
 				dialog.showModal();
+				location.hash = `#preview-${this.id}`;
+				setTimeout(() => {
+					window.addEventListener('hashchange', callback, { once: true });
+				}, 50);
 			}
 		});
 	}

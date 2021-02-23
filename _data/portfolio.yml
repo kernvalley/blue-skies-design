@@ -1,13 +1,17 @@
 - "@context": https://schema.org
   "@type": ImageObject
+  identifier: 939d9967-45f3-41c6-8cac-e93b5d1210c5
   url: /img/raster/McNally.webp
 - "@context": https://schema.org
   "@type": ImageObject
+  identifier: 570f2313-2c09-46a6-a1d0-a9578d5dc1bc
   url: /img/raster/SeniorLifeStyles.webp
 - "@context": https://schema.org
   "@type": ImageObject
+  identifier: 7d945c2b-7151-4f35-ac1d-e530612d75eb
   url: /img/raster/ToysforTotsEaster.webp
 - "@context": https://schema.org
   "@type": ImageObject
+  identifier: 68ef9c90-1190-467f-b22e-a27c4a750ee2
   url: /img/raster/VeteransTab.webp
 

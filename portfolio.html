@@ -10,7 +10,7 @@ tags:
 ---
 <section id="portfolio-ads" class="grid">
 	{% for img in site.data.portfolio %}
-	  <div class="card shadow portfolio-entry center">
+	  <div id="{{ img.identifier }}" class="card shadow portfolio-entry center cursor-pointer">
 		<img src="{{ img.url }}" loading="lazy" decoding="async" alt="" referrerpolicy="no-referrer" />
 	  </div>
 	{% endfor %}
