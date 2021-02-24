@@ -73,28 +73,26 @@ Promise.allSettled([
 
 		if ('IntersectionObserver' in window) {
 			$entries.addClass('hidden');
-			const observer = new IntersectionObserver(entries => {
-				entries.forEach(({ target, isIntersecting }, i) => {
-					if (isIntersecting) {
-						target.animate([{
-							transform: 'rotateX(-30deg) scale(0.85)',
-							opacity: 0.3,
-						}, {
-							transform: 'none',
-							opacity: 1,
-						}], {
-							duration: 300,
-							delay: 100 * i,
-							easing: 'ease-in-out',
-						});
-						target.classList.remove('hidden');
-					} else {
-						target.classList.add('hidden');
-					}
-				});
-			});
+			$entries.intersect(({ target, isIntersecting }, observer, index = 0) => {
+				if (isIntersecting) {
+					target.animate([{
+						transform: 'rotateX(-30deg) scale(0.85)',
+						opacity: 0,
+					}, {
+						transform: 'none',
+						opacity: 1,
+					}], {
+						duration: 300,
+						delay: 100 * index,
+						easing: 'ease-in-out',
+						fill: 'both',
+					});
 
-			$entries.each(entry => observer.observe(entry));
+					target.classList.remove('hidden');
+				} else {
+					target.classList.add('hidden');
+				}
+			});
 		}
 
 		$entries.click(async function() {
