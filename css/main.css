@@ -13,3 +13,19 @@ p:first-letter {
 #contact-form legend, #contact-form .input-label {
 	color: var(--scrollbar-color);
 }
+
+.gallery {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, 320px);
+	gap: 12px;
+	justify-content: space-evenly;
+}
+
+.gallery-item {
+	transform: none;
+	transition: transform 400ms ease-in-out;
+}
+
+.gallery-item:hover {
+	transform: scale(1.1) rotate(0.01turn);
+}

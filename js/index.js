@@ -5,6 +5,8 @@ import 'https://cdn.kernvalley.us/components/share-button.js';
 import 'https://cdn.kernvalley.us/components/github/user.js';
 import 'https://cdn.kernvalley.us/components/current-year.js';
 import 'https://cdn.kernvalley.us/components/bacon-ipsum.js';
+import 'https://cdn.kernvalley.us/components/placeholder-img.js';
+import 'https://cdn.kernvalley.us/components/slide-show/slide-show.js';
 import { useSVG } from 'https://cdn.kernvalley.us/js/std-js/svg.js';
 import { ready, css, on } from 'https://cdn.kernvalley.us/js/std-js/dom.js';
 import { $ } from 'https://cdn.kernvalley.us/js/std-js/esQuery.js';
@@ -68,7 +70,7 @@ Promise.allSettled([
 
 	if (location.pathname.startsWith('/contact')) {
 		$('#contact-form').submit(submitHandler);
-	} else if (location.pathname.startsWith('/portfolio')) {
+	} else if (['/portfolio', '/photography'].some(path => location.pathname.startsWith(path))) {
 		const $entries = $('.portfolio-entry');
 
 		if ('IntersectionObserver' in window) {
@@ -99,6 +101,8 @@ Promise.allSettled([
 			const img = this.querySelector('img');
 
 			if (img instanceof Element) {
+				const controller = new AbortController();
+				const signal = controller.signal;
 				const hash = location.hash;
 				const dialog = document.createElement('dialog');
 				const container = document.createElement('div');
@@ -106,6 +110,9 @@ Promise.allSettled([
 				const close = document.createElement('button');
 				const icon = useSVG('x', { fill: '#343434', height: 20, width: 20 });
 				const callback = function callback(event) {
+					if (! signal.aborted) {
+						controller.abort();
+					}
 					if (hash === '#' || hash === '') {
 						history.replaceState(history.state, document.title, location.pathname);
 					} else {
@@ -144,14 +151,13 @@ Promise.allSettled([
 
 				document.body.append(dialog);
 
-
-				on(close, { click: callback }, { once: true });
+				on(close, { click: callback }, { once: true, signal });
 				on(dialog, {
 					close: ({ target }) => {
 						target.remove();
 						window.removeEventListener('hashchange', callback, { once: true });
 					}
-				}, { once: true });
+				}, { once: true, signal });
 
 				if (dialog.animate instanceof Function) {
 					dialog.animate([{
@@ -167,7 +173,7 @@ Promise.allSettled([
 				dialog.showModal();
 				location.hash = `#preview-${this.id}`;
 				setTimeout(() => {
-					window.addEventListener('hashchange', callback, { once: true });
+					window.addEventListener('hashchange', callback, { once: true, signal });
 				}, 50);
 			}
 		});
