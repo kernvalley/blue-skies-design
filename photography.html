@@ -1,0 +1,25 @@
+---
+layout: default
+title: Photography
+pinned: true
+description: A GitHub repository for easily creating fast, modern, PWA compatible websites
+tags:
+  - jekyll
+  - pwa
+  - github template repo
+---
+<section class="gallery">
+  {% for n in (1..15) %}
+    <div class="portfolio-entry">
+      <img width="320" height="240" color="FAFAFA" backgroundcolor="343434" format="webp" is="placeholder-img" id="photo-{{n}}" class="card shadow gallery-item" alt="Placeholder {{n}}" loading="lazy" decoding="async" />
+      <!-- <img width="320" height="240" src="https://via.placeholder.com/320x240/343434/FAFAFA.webp" id="photo-{{n}}" class="card shadow gallery-item" loading="lazy" decoding="async" referrerpolicy="no-referrer" alt="Placeholder image" /> -->
+    </div>
+  {% endfor %}
+</section>
+<section class="center">
+  <slide-show class="card shadow" width="320px" height="240px" controls="">
+    {% for n in (1..5) %}
+      <img slot="slide" width="320" height="240" src="https://via.placeholder.com/320x240/343434/FAFAFA.webp?text=Placeholder-{{n}}" decoding="async" referrerpolicy="no-referrer" alt="Placeholder image {{n}}" />
+    {% endfor %}
+  </slide-show>
+</section>

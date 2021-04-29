@@ -1,5 +1,6 @@
 - src: https://cdn.kernvalley.us/js/std-js/no-console.js
   async: true
+  defer: true
   crossOrigin: anonymous
   referrerPolicy: no-referrer
 - src: https://cdn.polyfill.io/v3/polyfill.min.js
